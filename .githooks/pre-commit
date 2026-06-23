@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+echo "- fmt"
+unformatted=$(gofmt -l .)
+if [ -n "$unformatted" ]; then
+  echo "не отформатированы:"
+  printf '%s\n' "$unformatted"
+  echo "исправьте: gofmt -w ."
+  exit 1
+fi
+
+echo "- lint"
+golangci-lint run ./...
+
+echo "- build"
+go build ./...
+
+echo "- test"
+go test -count=1 ./...
+
+echo "готово"
