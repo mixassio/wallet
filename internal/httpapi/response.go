@@ -8,10 +8,12 @@ import (
 
 // Коды ошибок единого формата
 const (
-	CodeUnauthorized    = "UNAUTHORIZED"
-	CodeValidationError = "VALIDATION_ERROR"
-	CodeNotFound        = "NOT_FOUND"
-	CodeInternal        = "INTERNAL"
+	CodeUnauthorized      = "UNAUTHORIZED"
+	CodeValidationError   = "VALIDATION_ERROR"
+	CodeNotFound          = "NOT_FOUND"
+	CodeInternal          = "INTERNAL"
+	CodeInsufficientFunds = "INSUFFICIENT_FUNDS"
+	CodeTransactionFailed = "TRANSACTION_FAILED"
 )
 
 // единый формат ошибки

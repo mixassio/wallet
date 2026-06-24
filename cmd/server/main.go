@@ -45,8 +45,10 @@ func run() error {
 	defer pool.Close()
 
 	repo := repository.NewPlayerRepository(pool)
+	txRepo := repository.NewTransactionRepository(pool)
 	svc := service.NewPlayerService(repo)
-	handler := httpapi.NewRouter(svc, cfg.AuthToken, cfg.RequestTimeout)
+	txSvc := service.NewTransactionService(txRepo)
+	handler := httpapi.NewRouter(svc, txSvc, cfg.AuthToken, cfg.RequestTimeout)
 
 	srv := &http.Server{
 		Addr:              ":" + cfg.AppPort,
